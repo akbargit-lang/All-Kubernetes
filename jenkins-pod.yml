@@ -1,0 +1,27 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: jenkins2
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: jenkins2
+  strategy: 
+    rollingUpdate: 
+      maxUnavailable: 0
+    type: RollingUpdate
+  template: 
+    metadata: 
+      labels: 
+        app: jenkins2
+    spec: 
+      containers: 
+        - 
+          image: "jenkins/jenkins:lts"
+          name: jenkins2
+          ports: 
+            - 
+              containerPort: 8080
+
